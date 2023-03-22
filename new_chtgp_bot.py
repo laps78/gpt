@@ -15,4 +15,5 @@ def ask(prompt):
     print('\nОтвет: ')                                    
     print(completion.choices[0]["text"])
 
-ask('Самаяя красивая женщина на земле')
+print("Составьте Ваш запрос в текстовом формате и нажмите enter?")
+ask(str(input()))
