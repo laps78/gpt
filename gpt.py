@@ -1,3 +1,4 @@
+import sys
 import openai
 openai_token = "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"
 
@@ -15,5 +16,7 @@ def ask(prompt):
     print('\nОтвет: ')                                    
     print(completion.choices[0]["text"])
 
-print("Составьте Ваш запрос в текстовом формате и нажмите enter?")
-ask(str(input()))
+while (True):
+    print("Составьте Ваш запрос в текстовом формате и нажмите enter>>>\nИли введите \"exit\" для завршения программы...")
+    prompt = str(input())
+    prompt == "exit" if sys.exit() else ask(prompt)
