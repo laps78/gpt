@@ -8,10 +8,7 @@ engine = "text-davinci-003"
 # prompt = str(input())
 
 def ask(prompt):
-    completion = openai.Completion.create(engine = engine,
-                                      prompt = prompt,
-                                      temperature = 0.5,
-                                      max_tokens = 1000)
+    completion = openai.Completion.create(engine = engine, prompt = prompt, temperature = 0.5, max_tokens = 1000)
     print('Вопрос: ', prompt)
     print('\nОтвет: ')                                    
     print(completion.choices[0]["text"])
@@ -19,4 +16,6 @@ def ask(prompt):
 while (True):
     print("Составьте Ваш запрос в текстовом формате и нажмите enter>>>\nИли введите \"exit\" для завршения программы...")
     prompt = str(input())
-    prompt == "exit" if sys.exit() else ask(prompt)
+    if prompt == "exit":
+        sys.exit() 
+    ask(prompt)
