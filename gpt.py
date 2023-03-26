@@ -16,7 +16,7 @@ openai.api_key = os.environ['OPENAI_TOKEN']
 engine = "text-davinci-003"
 
 def ask(prompt):
-    completion = openai.Completion.create(engine = engine, prompt = prompt, temperature = 0.5, max_tokens = 4096)
+    completion = openai.Completion.create(engine = engine, prompt = prompt, temperature = 0.5, max_tokens = 2048)
     print('Вопрос: ', prompt)
     print('\n>>> Ответ: ')                                    
     print(completion.choices[0]["text"])
