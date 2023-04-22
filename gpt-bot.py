@@ -43,11 +43,23 @@ def start(message):
     bot.reply_to(message, 
                  "Привет! Я бот, который помогает вам общаться с OpenAI API.")
 
-
 @bot.message_handler(commands=['help'])
 def help(message):
     bot.reply_to(message,
-                 "Вы можете отправлять запросы в OpenAI API через меня. Просто напишите мне свой запрос и я отправлю его на обработку.")
+                 "Вы можете отправлять запросы в OpenAI API через меня. Просто напишите мне свой запрос и я отправлю его на обработку.\n\nТакже доступные команды:\n\n/start - запуск бота\n/refresh - сбросить контекст(актуально, если получаете ошибку нехватки токенов)\n/help - вызов данной справки")
+
+@bot.message_handler(commands=['refresh'])
+def drop_cache(message):
+    user_id = message.from_user.id
+
+    cursor = conn.cursor()
+
+    cursor.execute('DELETE FROM context WHERE user_id=?', (user_id,))
+
+    context_cache.clear()
+
+    conn.commit()
+    bot.send_message(user_id, "Контекст и кэш очищены.")
 
 # создаем обработчик сообщений
 @bot.message_handler(func=lambda message: True)
