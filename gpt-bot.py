@@ -80,8 +80,8 @@ def echo(message):
             conn.commit()
         context_cache[message.chat.id] = {'message': context + message.text, 'timestamp': datetime.now()}
 
-    except Exception as e:
-        bot.reply_to(message, f"Произошла ошибка при обработке вашего запроса: {str(e)}")
+    except Exception as error:
+        bot.reply_to(message, f"Произошла ошибка при обработке вашего запроса: {str(error)}")
 
 
 
