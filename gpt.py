@@ -1,16 +1,21 @@
 import sys
 import os
 import openai
+import telebot
 
-env_path = os.path.join(os.getcwd(), '.env')
-# Открываем файл и читаем все переменные окружения
-with open(env_path) as env:
-    for line in env:
-        # Удаляем пробелы по краям и разбиваем строку на две части по разделителю '='
-        key, value = line.strip().split('=')
-        # Устанавливаем переменную окружения
-        os.environ[key] = value
-
+def init_env():
+  # init env
+  env_path = os.path.join(os.getcwd(), '.env')
+  # Открываем файл и читаем все переменные окружения
+  with open(env_path) as env:
+      for line in env:
+          # Удаляем пробелы по краям и разбиваем строку на две части по разделителю '='
+          key, value = line.strip().split('=')
+          # Устанавливаем переменную окружения
+          os.environ[key] = value
+  return os
+        
+init_env()
 openai.api_key = os.environ['OPENAI_TOKEN']
 
 engine = "text-davinci-003"
