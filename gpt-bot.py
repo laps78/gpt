@@ -42,13 +42,13 @@ context_cache = {}
 def start(message):
     bot.reply_to(message, 
                  "Привет! Я бот, который помогает вам общаться с OpenAI API.")
-    print('start: ', message.from_user.id)
+    print('start: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
 
 @bot.message_handler(commands=['help'])
 def help(message):
     bot.reply_to(message,
                  "Вы можете отправлять запросы в OpenAI API через меня. Просто напишите мне свой запрос и я отправлю его на обработку.\n\nТакже доступные команды:\n\n/start - запуск бота\n/refresh - сбросить контекст(актуально, если получаете ошибку нехватки токенов)\n/help - вызов данной справки")
-    print('help: ', message.from_user.id)
+    print('help: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
 
 @bot.message_handler(commands=['refresh'])
 def drop_cache(message):
@@ -62,7 +62,7 @@ def drop_cache(message):
 
     conn.commit()
     bot.send_message(user_id, "Контекст и кэш очищены.")
-    print('clear cash: ', user_id)
+    print('clear cash: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
 
 # создаем обработчик сообщений
 @bot.message_handler(func=lambda message: True)
