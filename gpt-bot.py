@@ -79,6 +79,7 @@ def echo(message):
             context = row[0] if row else ""
 
     bot.reply_to(message, "Запрос принят в работу.")
+    print('bot accepted request from: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
     try:
         response = openai.Completion.create(
             engine="text-davinci-003",
@@ -87,6 +88,7 @@ def echo(message):
             max_tokens=3500
         )
         bot.reply_to(message, response.choices[0].text)
+        print('bot replies to: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
 
         # сохраняем контекст в кэше и базе данных
         with conn:
