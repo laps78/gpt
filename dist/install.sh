@@ -29,7 +29,7 @@ pip install openai telebot datetime --break-system-packages
 echo "Требуемые модули библиотек python подключены."
 
 # install watchdog daemon service
-cat > /etc/systemd/system/awesomebot.service << EOF
+cat > /etc/systemd/system/laps-gpt-bot.service << EOF
 [Unit]
 Description=L.A.P.S. GPT BOT v1.1
 After=syslog.target
@@ -47,8 +47,9 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable gpt_bot
-systemctl start gpt_bot
+systemctl enable laps-gpt-bot
+systemctl start laps-gpt-bot
+
 echo "Демон настроен и активирован";
 
 # final commands
