@@ -4,18 +4,18 @@ echo "L.A.P.S. GPT TELEGRAM BOT ATOMATIC INSTALLER FOR SPRINTBOX v0.1:\n\n init.
 
 # create bot user
 echo "Будет создан пользователь gpt_bot. Вам будет предложено ввести и подтвердить UNIX пароль, а также заполнить дополнительную информацию о пользователе. Обязательно требуется точно ввести и повторить пароль, остальные данные - просто нажимайте enter";
-echo "adduser gpt_bot";
+adduser gpt_bot
 
 # install packages
-echo "sudo apt update && sudo apt upgrade-y";
-echo "sudo apt install python3-pip -y";
+sudo apt update && sudo apt upgrade -y
+sudo apt install python3-pip -y
 
 
 # clone project
-echo "git clone https://github.com/laps78/gpt && cd gpt";
+git clone https://github.com/laps78/gpt && cd gpt
 
 # create env
-echo "touch .env";
+touch .env
 echo "Введите токен, полученный на сайте openai.com:"
 read OPENAI_TOKEN
 echo "Введите токен, полученный в Telegram от @botFather:"
@@ -25,7 +25,7 @@ echo "TG_TOKEN=$TG_TOKEN" >> .env
 echo "Переменные окружения установлены."
 
 # install libraries
-echo "pip install openai telebot datetime --break-system-packages";
+pip install openai telebot datetime --break-system-packages
 echo "Требуемые модули библиотек python подключены."
 
 # install watchdog daemon service
@@ -46,9 +46,9 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-echo "systemctl daemon-reload";
-echo "systemctl enable root";
-echo "systemctl start root";
+systemctl daemon-reload
+systemctl enable root
+systemctl start root
 echo "Демон настроен и активирован";
 
 # final commands
