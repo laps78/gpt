@@ -31,14 +31,14 @@ echo "Требуемые модули библиотек python подключе
 # install watchdog daemon service
 cat > /etc/systemd/system/laps-gpt-bot.service << EOF
 [Unit]
-Description=L.A.P.S. GPT BOT v1.1
+Description=L.A.P.S. GPT Bot v1.1
 After=syslog.target
 After=network.target
 
 [Service]
 Type=simple
 User=gpt_bot
-WorkingDirectory=/home/gpt
+WorkingDirectory=/root/gpt
 ExecStart=/usr/bin/python3 /root/gpt/gpt-bot.py
 Restart=always
 
