@@ -47,8 +47,8 @@ WantedBy=multi-user.target
 EOF
 
 systemctl daemon-reload
-systemctl enable root
-systemctl start root
+systemctl enable gpt_bot
+systemctl start gpt_bot
 echo "Демон настроен и активирован";
 
 # final commands
