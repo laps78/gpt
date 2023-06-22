@@ -12,7 +12,7 @@ echo "(()/(    )\    (()/((()/(   (()/(    ) ( /(  "
 echo " /(_))((((_)(   /(_))/(_))   /(_))( /( )\()) "
 echo "(_))   )\ _ )\ (_)) (_))    (_))  )(_)|(_)\  "
 echo "| |    (_)_\(_)| _ \/ __|   | |  ((_)_| |(_) "
-echo "| |__ _ / _ \ _|  _/\__ \_  | |__/ _` | '_ \ "
+echo "| |__ _ / _ \ _|  _/\__ \_  | |__/ _\'| '_ \ "
 echo "|____(_)_/ \_(_)_|(_)___(_) |____\__,_|_.__/ "
 echo "                                             "
 echo "L.A.P.S. GPT TELEGRAM BOT ATOMATIC INSTALLER FOR SPRINTBOX v0.1:$br init..."
@@ -66,7 +66,7 @@ echo "OPENAI_TOKEN=$OPENAI_TOKEN" > .env
 echo "TG_TOKEN=$TG_TOKEN" >> .env
 echo "Переменные окружения установлены."
 
-# install watchdog daemon service
+# install watchdog daemon systemctl service
 cat > /etc/systemd/system/laps-gpt-bot.service << EOF
 [Unit]
 Description=L.A.P.S. GPT Bot v1.1
