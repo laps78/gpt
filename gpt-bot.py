@@ -44,6 +44,32 @@ def start(message):
                  "Привет! Я бот, который помогает вам общаться с OpenAI API.")
     print('start: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
 
+
+@bot.message_handler(commands = ['showtoken'])
+def show_token(message):
+    if openai.api_key:
+        bot.send_message(message.from_user.id, openai.api_key)
+    else:
+        bot.send_message(message.from_user.id, 'OpenAI токен API не установлен. Воспользуйтесь комадой /settoken или jghtltkbnt соответствующую переменную в окружении')
+
+
+@bot.message_handler(commands = ['settoken'])
+def set_token_dialog(message):
+    bot.send_message(message.from_user.id, "Отлично! Установим новый API токен OpenAI\nОбращаю внимание, что старый токен будет перезаписан без возможности восстановления!\n\nДля установки нового токена отправьте мне его следующим сообщением.\nОжидаю токен...")
+    bot.register_next_step_handler(message, set_new_token)
+    print('settoken: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
+
+
+def set_new_token(message):
+    if len(openai.api_key) == len(message.text):
+        openai.api_key = message.text
+        bot.send_message(message.from_user.id, "OpenAI токен API успешно изменен на " + message.text)
+        print('token change success: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
+    else:
+        bot.send_message(message.from_user.id, "Это непохоже на токен. Операция отменена!\nДля повторной попытки повторите команду '/settoken'")
+        print('token change deny: ', message.from_user.id, message.from_user.first_name, message.from_user.last_name)
+
+
 @bot.message_handler(commands=['help'])
 def help(message):
     bot.reply_to(message,
